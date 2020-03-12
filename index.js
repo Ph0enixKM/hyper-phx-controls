@@ -18,6 +18,8 @@ exports.decorateConfig = (config) => {
     if (windowControls === false) {
         return config;
     }
+	
+	if (isWin) return config
 
     let isLeft = windowControls === 'left';
 
@@ -35,23 +37,23 @@ exports.decorateConfig = (config) => {
             .header_appTitle {
                 margin-left: -56px;
             }
-            .mac_header {
+            .phx_header {
                 position: fixed;
                 top: 0;
                 ${isLeft ? 'left: 0;' : 'right: 0;'}
                 height: 22px;
                 width: 56px;
             }
-            .mac_actions {
+            .phx_actions {
                 position: absolute;
                 left: 0;
                 right: 0;
                 bottom: 0;
                 top: 0;
             }
-            .mac_header .mac_close,
-            .mac_header .mac_minimize,
-            .mac_header .mac_maximize {
+            .phx_header .phx_close,
+            .phx_header .phx_minimize,
+            .phx_header .phx_maximize {
                 width: 12px;
                 height: 12px;
                 position: absolute;
@@ -61,28 +63,28 @@ exports.decorateConfig = (config) => {
                 background-size: cover !important;
                 background-color: transparent !important;
             }
-            .mac_header .mac_close {
+            .phx_header .phx_close {
                 background-color: #f25056;
                 background-image: url('${dirname}/icons/close.svg');
                 left: ${pluginConfig.flipped ? '5px' : '40px'};
             }
-            .mac_header .mac_close:hover {
+            .phx_header .phx_close:hover {
                 background-image: url('${dirname}/icons/close_hover.svg');
             }
-            .mac_header .mac_minimize {
+            .phx_header .phx_minimize {
                 background-color: #fac536;
                 background-image: url('${dirname}/icons/minimize.svg');
                 left: 23px;
             }
-            .mac_header .mac_minimize:hover {
+            .phx_header .phx_minimize:hover {
                 background-image: url('${dirname}/icons/minimize_hover.svg');
             }
-            .mac_header .mac_maximize {
+            .phx_header .phx_maximize {
                 background-color: #39ea49;
                 background-image: url('${dirname}/icons/maximize.svg');
                 left: ${pluginConfig.flipped ? '40px' : '5px'};
             }
-            .mac_header .mac_maximize:hover {
+            .phx_header .phx_maximize:hover {
                 background-image: url('${dirname}/icons/maximize_hover.svg');
             }
         `
@@ -126,11 +128,11 @@ exports.decorateHeader = (Hyper, { React }) => {
         render() {
             return (
                 React.createElement(Hyper, Object.assign({}, this.props, {
-                    customChildren: React.createElement('div', { className: 'mac_header' },
-                        React.createElement('div', { className: 'mac_actions' },
-                            React.createElement('span', { className: 'mac_close', onClick: this.closeApp }),
-                            React.createElement('span', { className: 'mac_minimize', onClick: this.minimizeApp }),
-                            React.createElement('span', { className: 'mac_maximize', onClick: this.maximizeApp })
+                    customChildren: React.createElement('div', { className: 'phx_header' },
+                        React.createElement('div', { className: 'phx_actions' },
+                            React.createElement('span', { className: 'phx_close', onClick: this.closeApp }),
+                            React.createElement('span', { className: 'phx_minimize', onClick: this.minimizeApp }),
+                            React.createElement('span', { className: 'phx_maximize', onClick: this.maximizeApp })
                         )
                     )
                 }))
